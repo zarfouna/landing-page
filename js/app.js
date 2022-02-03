@@ -19,11 +19,10 @@ for(let i=0;i<sectionsList.length;i++){
     a.classList.add('menu__link')
     a.setAttribute('id',`${i}`)
     a.setAttribute('href',`#${sectionsList[i].id}`)
-     console.log(a)
-     a.addEventListener('click', setActive )
-     a.appendChild( document.createTextNode(sectionsList[i].attributes['data-nav']['nodeValue']))
-     linksList.push(a)
-     newLi.appendChild(a)
+    a.addEventListener('click', setActive )
+    a.appendChild( document.createTextNode(sectionsList[i].attributes['data-nav']['nodeValue']))
+    linksList.push(a)
+    newLi.appendChild(a)
     
     menuUl.appendChild(newLi)
     
