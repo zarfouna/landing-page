@@ -6,6 +6,9 @@
 */
 const sectionsList=document.querySelectorAll("section") 
 const menuUl=document.getElementById('navbar__list') //refence to DOM ul
+const hamburger = document.querySelector(".hamburger");
+ 
+      
 let linksList=[]
 let activeIndex=0  //'section1' first selected active section
 sectionsList[activeIndex].classList.add('active')
@@ -13,12 +16,14 @@ sectionsList[activeIndex].classList.add('active')
 for(let i=0;i<sectionsList.length;i++){
     const newLi=document.createElement('li')
     const a=document.createElement('a')
+    newLi.classList.add('nav-item')
     if(i===activeIndex){
         a.classList.add('active')
     }
-    a.classList.add('menu__link')
+
+     
+    a.classList.add('nav-link')
     a.setAttribute('id',`${i}`)
-    a.setAttribute('href',`#${sectionsList[i].id}`)
     a.addEventListener('click', setActive )
     a.appendChild( document.createTextNode(sectionsList[i].attributes['data-nav']['nodeValue']))
     linksList.push(a)
@@ -35,7 +40,7 @@ for(let i=0;i<sectionsList.length;i++){
 function setActive(event){
     
     const selectedIndex=Number(event.target.id)
-   
+    event.preventDefault()
     // remove active from previous section
     linksList[activeIndex].classList.remove('active')
     sectionsList[activeIndex].classList.remove('active')
@@ -45,6 +50,13 @@ function setActive(event){
  
     activeIndex=selectedIndex
 
+    closeMenu()
+ // add smooth scrolling feature /////
+ sectionsList[selectedIndex].scrollIntoView({
+    behavior: "smooth",
+    block: "end",
+    inline: "nearest",
+});
      ///////// using Element.getBoundingClientRect() /////////
     }
 
@@ -68,3 +80,18 @@ function setActive(event){
       document.addEventListener('scroll', scrolling);
       scrolling()
  
+      
+      hamburger.addEventListener("click", mobileMenu);
+      
+      function mobileMenu() {
+          hamburger.classList.toggle("active2");
+          menuUl.classList.toggle("active2");
+      }
+ 
+      
+      
+      
+      function closeMenu() {
+          hamburger.classList.remove("active2");
+          menuUl.classList.remove("active2");
+      }

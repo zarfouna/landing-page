@@ -61,30 +61,97 @@ section {
 
 /* ---- Module Rules ---- */
 
-/* Navigation Styles*/
-.navbar__menu ul {
-  padding-left: 0;
-  margin: 0;
-  text-align: right;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
 }
 
-.navbar__menu li {
+.hamburger {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #101010;
+}
+#navbar__list {
+  /* UL */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.nav-item {
+  /* li */
+  margin-left: 5rem;
   display: inline-block;
 }
 
-.navbar__menu .menu__link {
-  display: block;
-  padding: 1em;
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
+.nav-link {
+  /* a */
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #8a1e72;
 }
 
-.navbar__menu .menu__link:hover {
-  background: rgb(225, 155, 228);
-  color: #fff;
+.nav-link:hover {
+  color: #f1b3e9;
+  cursor: pointer;
   transition: ease 0.3s all;
 }
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    margin: auto 0;
+  }
+  #navbar__list {
+    position: fixed;
+    left: -100%;
+    top: 5rem;
+    flex-direction: column;
+    background-color: rgb(246, 215, 236);
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+
+  #navbar__list.active2 {
+    left: 6%;
+  }
+
+  .nav-item {
+    margin: 2.5rem 2.5rem;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger.active2 .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active2 .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active2 .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* Navigation Styles*/
 
 /* Header Styles */
 .page__header {
@@ -236,3 +303,18 @@ section.active .landing__container::after {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
   }
 }
+/*
+
+.navbar__menu .menu__link {
+  display: block;
+  padding: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.navbar__menu .menu__link:hover {
+  background: rgb(225, 155, 228);
+  color: #fff;
+  transition: ease 0.3s all;
+}*/
